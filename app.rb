@@ -26,21 +26,15 @@ class App < Sinatra::Base
     "#{params[:word1]} #{params[:word2]} #{params[:word3]} #{params[:word4]} #{params[:word5]}."
   end
 
-  get '/:operation/:number1/:number2' do
-    number1 = params[:number1].to_i
-    number2 = params[:number2].to_i
-
-    answer = 'Unable to perform this operation'
-
-    case params[:operation]
-    when 'add'
-      answer = (number1 + number2).to_s
-    when 'subtract'
-      answer = (number1 - number2).to_s
-    when 'multiply'
-      answer = (number1 * number2).to_s
-    when 'divide'
-      answer = (number1 / number2).to_s
+  get '/:operation/:number1/:number2' do 
+    if params[:operation] == 'add'
+    "#{params[:number1].to_i + params[:number2].to_i}"
+    elsif params[:operation] == 'subtract'
+      "#{params[:number1].to_i - params[:number2].to_i}"
+    elsif params[:operation] == 'multiply'
+      "#{params[:number1].to_i * params[:number2].to_i}"
+    elsif params[:operation] == 'divide'
+      "#{params[:number1].to_i / params[:number2].to_i}"
     end
   end
 end
